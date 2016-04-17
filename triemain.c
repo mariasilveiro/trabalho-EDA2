@@ -3,18 +3,38 @@
 #include <string.h>
 #include "trie.h"
 
+#define DIR "words_en.txt"
 
-/*
-void le_ficheiro(){
 
+
+void add_trie(trie *t, char *fileDir){
+              char linha[100];
+              FILE *arq;
+              arq = fopen(fileDir, "r");
+              if(arq == NULL)
+                      printf("Erro, nao foi possivel abrir o arquivo\n");
+              else
+                  while( (fgets(linha, sizeof(linha), arq))!=NULL){
+                      linha[strlen(linha)-1] = 0;
+                      insere_trie(t, linha);
+                      printf("%s\n", linha );
+                    
+                  }
+              fclose(arq);
 }
 
-*/
+
+
+
 
 int  main()
 { 
+
   trie *t = nova_trie();
+
+  add_trie(t, DIR);
   
+  /*
   insere_trie(t, "maria");
   int a = existe_trie(t, "maria");
   int b = existe_trie(t, "blabla");
@@ -24,7 +44,7 @@ int  main()
   //printf("%s\n", "ahjhsja" );
   int c = existe_trie(t, "maria");
   printf("%d\n", c );
-
+*/
 
  return 0;
 }
@@ -52,3 +72,4 @@ while (1) {
 }
 }
  */ 
+
